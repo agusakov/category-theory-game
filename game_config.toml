@@ -1,0 +1,19 @@
+name = "Real number game"
+version = "0.1.0"
+extra_files = "extras"
+intro = "src/game/intro.lean"
+
+[[worlds]]
+name = "Sup and inf"
+id = 1
+levels = [
+	"src/game/sup_inf/L01defs.lean",
+]
+
+[[worlds]]
+name = "Limits of sequences"
+id = 2
+parents = [1]
+levels = [
+	"src/game/limits/L01defs.lean",
+]
