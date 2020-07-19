@@ -1,8 +1,8 @@
 [package]
 name = "real-number-game"
 version = "0.1"
-lean_version = "3.4.2"
+lean_version = "leanprover-community/lean:3.17.1"
 path = "src"
 
 [dependencies]
-mathlib = {git = "https://github.com/leanprover-community/mathlib", rev = "6ebb7e7884c9b11c137f5bb288cd80a46bc6dfac"}
+mathlib = {git = "https://github.com/leanprover-community/mathlib", rev = "bc278b7e92c6d3b977ab1c8013cb76224379016d"}
