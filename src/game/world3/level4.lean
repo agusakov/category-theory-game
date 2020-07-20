@@ -19,19 +19,19 @@ With monomorphisms and epimorphisms, we get some new useful cancellation laws. Y
 /- Lemma
 If $$f : X ⟶ Y$$ and $$g : X ⟶ Y$$ are morphisms such that $$f = g$$, then $$f ≫ h = g ≫ h$$.
 -/
-lemma cancel_mono_id' (X Y : C) (f : X ⟶ Y) [mono f] {g : X ⟶ X} : (g ≫ f = f) ↔ g = 𝟙 X :=
+lemma cancel_epi_id' (X Y : C) (f : X ⟶ Y) [epi f] {h : Y ⟶ Y} : (f ≫ h = f) ↔ h = 𝟙 Y :=
 begin
     split,
     intro hyp,
-    rw ← category.id_comp f at hyp,
-    rw ← category.assoc at hyp,
-    rw category.comp_id at hyp,
-    rw ← cancel_mono f,
+    rw ← category.comp_id f at hyp,
+    rw category.assoc at hyp,
+    rw category.id_comp at hyp,
+    rw ← cancel_epi f,
     exact hyp,
 
     intro hyp,
     rw hyp,
-    exact category.id_comp f,
+    exact category.comp_id f,
 end
 
 end category_theory
