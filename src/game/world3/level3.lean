@@ -22,6 +22,7 @@ If $$f : X ⟶ Y$$ and $$g : X ⟶ Y$$ are morphisms such that $$f = g$$, then $
 lemma cancel_mono_id' (X Y : C) (f : X ⟶ Y) [mono f] {g : X ⟶ X} : (g ≫ f = f) ↔ g = 𝟙 X :=
 begin
     split,
+    
     intro hyp,
     rw ← category.id_comp f at hyp,
     rw ← category.assoc at hyp,

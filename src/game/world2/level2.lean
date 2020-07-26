@@ -21,15 +21,15 @@ An isomorphism `f : X ⟶ Y` is a morphism for which there exists a morphism `g 
 /- Lemma
 If $$f : X ⟶ Y$$ and $$g : X ⟶ Y$$ are morphisms such that $$f = g$$, then $$f ≫ h = g ≫ h$$.
 -/
-lemma cancel_left_iso' {X Y Z : C} (f : X ⟶ Y) [is_iso f] {g h : Z ⟶ X} : (g ≫ f = h ≫ f) ↔ g = h :=
+lemma cancel_right_iso' {X Y Z : C} (f : X ⟶ Y) [is_iso f] {g h : Y ⟶ Z} : (f ≫ g = f ≫ h) ↔ g = h :=
 begin
     split,
 
     intro hyp,
-    rw ← category.comp_id g,
-    rw ← category.comp_id h,
-    rw ← is_iso.hom_inv_id f,
-    rw ← category.assoc,
+    rw ← category.id_comp g,
+    rw ← category.id_comp h,
+    rw ← is_iso.inv_hom_id f,
+    rw category.assoc,
     rw hyp,
     rw category.assoc,
 

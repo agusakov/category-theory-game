@@ -29,17 +29,11 @@ In other words, a functor consists of a mapping on objects and a mapping on morp
   /- Axiom:
     F.map (𝟙 X) : 𝟙 (F.obj X)-/
 
-/- Lemma
-If $$f : X ⟶ Y$$ and $$g : X ⟶ Y$$ are monomorphisms, then $$f ≫ g : X ⟶ Z$$ is a monomorphism.
--/
-lemma map_comp {X Y Z : C} (f : X ⟶ Y) (g : Y ⟶ Z) [epi (f ≫ g)] : epi g :=
-begin
-    split,
-    intros W h l hyp,
-    rw ← cancel_epi (f ≫ g),
-    rw category.assoc,
-    rw hyp,
-    rw ← category.assoc,
-end
+/-- A functor `F : C ⥤ D` sends isomorphisms `i : X ≅ Y` to isomorphisms `F.obj X ≅ F.obj Y` -/
+def map_iso (F : C ⥤ D) {X Y : C} (i : X ≅ Y) : F.obj X ≅ F.obj Y :=
+{ hom := F.map i.hom,
+  inv := F.map i.inv,
+  hom_inv_id' := by rw [←map_comp, iso.hom_inv_id, ←map_id],
+  inv_hom_id' := by rw [←map_comp, iso.inv_hom_id, ←map_id] }
 
 end category_theory

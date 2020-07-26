@@ -32,7 +32,10 @@ If $$f : X ⟶ Y$$ and $$g : X ⟶ Y$$ are morphisms such that $$f = g$$, then $
 lemma cancel_mono' (X Y Z : C) (f : X ⟶ Y) [mono f] {g h : Z ⟶ X} : (g ≫ f = h ≫ f) ↔ g = h :=
 begin
     split,
-    sorry, --use the axiom, figure out how it should be phrased
+    
+    intro hyp,
+    apply mono.right_cancellation g h hyp,
+
     intro hyp,
     rw hyp,
 end

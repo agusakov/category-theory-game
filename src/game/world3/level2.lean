@@ -1,4 +1,5 @@
 import category_theory.category.default
+import game.world1.level3
 
 universes v u  -- The order in this declaration matters: v often needs to be explicitly specified while u often can be omitted
 
@@ -31,10 +32,13 @@ So this gives us axioms
 /- Lemma
 If $$f : X ⟶ Y$$ and $$g : X ⟶ Y$$ are morphisms such that $$f = g$$, then $$f ≫ h = g ≫ h$$.
 -/
-lemma cancel_epi' (X Y Z : C) (f : X ⟶ Y) [mono f] {g h : Z ⟶ X} : (g ≫ f = h ≫ f) ↔ g = h :=
+lemma cancel_epi' {X Y Z : C} {f : X ⟶ Y} [epi f] {g h : Y ⟶ Z} : (f ≫ g = f ≫ h) ↔ g = h :=
 begin
     split,
-    sorry, --use the axiom, figure out how it should be phrased
+    
+    intro hyp,
+    apply epi.left_cancellation g h hyp,
+
     intro hyp,
     rw hyp,
 end
